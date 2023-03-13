@@ -1,0 +1,5 @@
+*.docx
+*.csv
+*.html
+*.xls*
+/fees_files/*
