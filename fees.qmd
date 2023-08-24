@@ -2,8 +2,8 @@
 title: "Fee Inventory"
 suttitle: "ORC 3345.024(A)(1)"
 params:
-    year: "2022-23"
-    file: "FY23_Revised_FI (01-11-2023).csv"
+    year: "2023-24"
+    file: "FY24_FI.csv"
 df-print: paged
 execute:
     echo: false
@@ -103,7 +103,7 @@ oh_resident_tf <- fee_data %>%
 
 kable(
     rbind(
-        select(lc_resident_tf, c("Feetitle", "amt_fmt")),
+        select(oh_resident_tf, c("Feetitle", "amt_fmt")),
         c(
             "**Total Tuition & Fees**", 
             paste0(
@@ -131,7 +131,7 @@ oh_resident_tf <- fee_data %>%
 
 kable(
     rbind(
-        select(lc_resident_tf, c("Feetitle", "amt_fmt")),
+        select(oh_resident_tf, c("Feetitle", "amt_fmt")),
         c(
             "**Total Tuition & Fees per credit hour**", 
             paste0(
@@ -162,7 +162,7 @@ non_resident_tf <- fee_data %>%
 
 kable(
     rbind(
-        select(lc_resident_tf, c("Feetitle", "amt_fmt")),
+        select(non_resident_tf, c("Feetitle", "amt_fmt")),
         c(
             "**Total Tuition & Fees**", 
             paste0(
@@ -190,7 +190,7 @@ non_resident_tf <- fee_data %>%
 
 kable(
     rbind(
-        select(lc_resident_tf, c("Feetitle", "amt_fmt")),
+        select(non_resident_tf, c("Feetitle", "amt_fmt")),
         c(
             "**Total Tuition & Fees per credit hour**", 
             paste0(

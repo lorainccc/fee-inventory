@@ -3,3 +3,4 @@
 *.html
 *.xls*
 /fees_files/*
+*.pdf
