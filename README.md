@@ -4,4 +4,4 @@ This repository shows how to build a page meeting the [Higher Education Costs an
 
 [FI.R](https://github.com/lorainccc/fee-inventory/blob/main/FI.R) is an [R](https://www.r-project.org/) script showing some examples of parsing the Fees Inventory document.
 
-[fees.qmd](https://github.com/lorainccc/fee-inventory/blob/main/fees.qmd) is a [Quarto](https://quarto.org/) document that renders a .pdf using the inputs in the header, namely the academic year and the fees inventory file name.
+[fees.qmd](https://github.com/lorainccc/fee-inventory/blob/main/fees.qmd) is a [Quarto](https://quarto.org/) document that renders a .docx or .pdf file using the inputs in the header, namely the academic year and the fees inventory file name.
