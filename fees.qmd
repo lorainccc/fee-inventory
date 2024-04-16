@@ -4,6 +4,9 @@ subtitle: "ORC 3345.024(A)(1)"
 params:
     year: "2023-24"
     file: "FY24_FI.csv"
+    lms: "Canvas"
+    bookstore: "Commodore Books and More"
+    bookstorelink: "http://bookstore.lorainccc.edu/SiteText?id=55657"
 df-print: paged
 execute:
     echo: false
@@ -256,7 +259,7 @@ fee_data %>%
 
 ## Instant Access / Inclusive Access
 
-Instant Access provides required course materials, such as eBooks or courseware, automatically through the Canvas course portal.  The Ohio Department of Higher Education (ODHE) calls this Inclusive Access.  For more information, please see [Commodore Books and More](http://bookstore.lorainccc.edu/SiteText?id=55657).
+Instant Access provides required course materials, such as eBooks or courseware, automatically through the `r params$lms` course portal.  The Ohio Department of Higher Education (ODHE) calls this Inclusive Access.  For more information, please see [`r params$bookstore`](`r params$bookstorelink`).
 
 ```{R}
 fee_data %>%
