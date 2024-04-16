@@ -1,6 +1,6 @@
 ---
 title: "Fee Inventory"
-suttitle: "ORC 3345.024(A)(1)"
+subtitle: "ORC 3345.024(A)(1)"
 params:
     year: "2023-24"
     file: "FY24_FI.csv"
