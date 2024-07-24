@@ -18,6 +18,10 @@ library(tidyverse)
 library(knitr)
 
 fee_data <- read.csv(params$file) %>%
+    # reformat names from the original HEI template (if necessary)
+    rename_with(~str_to_title(gsub(".", "", .x, fixed = TRUE))) %>%
+    rename("Mincredit" = "Minimumcredit") %>%
+    rename("Maxcredit" = "Maximumcredit") %>%
     mutate(
         amt_fmt = scales::dollar(Feeamount),
         percreditnote = case_when(
