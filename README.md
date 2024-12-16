@@ -13,3 +13,27 @@ This repository shows how to build a page meeting the [Higher Education Costs an
 | lms           | The name of your institution's LMS system |
 | bookstore     | The name of your bookstore                |
 | bookstorelink | A link to your bookstore's page           |
+
+To include the name of your institution in the title, change the top line of [fees.qmd](https://github.com/lorainccc/fee-inventory/blob/main/fees.qmd):
+
+```
+title: "Fee Inventory"
+```
+
+to this:
+
+```
+title: |
+       | Lorain County Community College
+       | Fee Inventory
+```
+
+To show a logo above the title:
+
+```
+title: |
+       | ![](logo.png)
+       | Fee Inventory
+```
+
+Where "logo.png" is an image file in the same folder as [fees.qmd](https://github.com/lorainccc/fee-inventory/blob/main/fees.qmd).
