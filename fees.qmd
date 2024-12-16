@@ -18,6 +18,10 @@ library(tidyverse)
 library(knitr)
 
 fee_data <- read.csv(params$file) %>%
+    # reformat names from the original HEI template (if necessary)
+    rename_with(~str_to_title(gsub(".", "", .x, fixed = TRUE))) %>%
+    rename("Mincredit" = "Minimumcredit") %>%
+    rename("Maxcredit" = "Maximumcredit") %>%
     mutate(
         amt_fmt = scales::dollar(Feeamount),
         percreditnote = case_when(
@@ -215,27 +219,38 @@ kable(
 Program fees are required of all students in an academic program, to provide a service or benefit.
 
 ```{R}
-fee_data %>%
+program_fees_data <- fee_data %>%
     filter(Feecategorycode == "SP", Feecode == "PF") %>%
-    select(c("Academicprogram", "Feetitle", "amt_fmt")) %>%
-    kable(
+    select(c("Academicprogram", "Feetitle", "amt_fmt"))
+
+if (nrow(program_fees_data)) {
+    program_fees_data %>% kable(
         align = "llr",
         col.names = c("Curriculum Code", "Fee", "Amount")
     )
+} else {
+  knitr::asis_output("**No program fees are applied at this institution.**")
+}
+
 ```
 
 ## Special Purpose Fees
 
-Special purpose fees apply to particular services or benefits provided to specific students and are not applied to all enrolled students.  Special purpose fees include fines.
+Special purpose fees apply to particular services or benefits provided to specific students and are not applied to all enrolled students. Special purpose fees include fines.
 
 ```{R}
-fee_data %>%
+special_fees_data <- fee_data %>%
     filter(Feecategorycode == "SP", Feecode == "FI" | Feecode == "RB") %>%
-    select(c("Feetitle", "amt_fmt")) %>%
-    kable(
+    select(c("Feetitle", "amt_fmt"))
+
+if (nrow(special_fees_data)) {
+    special_fees_data %>% kable(
         align = "lr",
         col.names = c("Fee", "Amount")
     )
+} else {
+  knitr::asis_output("**No special purpose fees are applied at this institution.**")
+}
 ```
 
 {{< pagebreak >}}
@@ -245,14 +260,20 @@ fee_data %>%
 Class fees apply to particular courses, typically to pay for equipment and materials used in the class, such as during laboratories or demonstrations.
 
 ```{R}
-fee_data %>%
+course_fees_data <- fee_data %>%
     filter(Feecategorycode == "SP", Feecode == "CF" | Feecode == "LB") %>%
     select(c("Courseid", "Feetitle", "amt_fmt", "percreditnote")) %>%
-    arrange(Courseid) %>%
+    arrange(Courseid)
+
+if (nrow(course_fees_data)) {
+    course_fees_data %>% 
     kable(
         align = "llrl",
         col.names = c("Course", "Fee", "Amount", "Note")
     )
+} else {
+  knitr::asis_output("**No class fees are applied at this institution.**")
+}
 ```
 
 {{< pagebreak >}}
@@ -262,11 +283,16 @@ fee_data %>%
 Instant Access provides required course materials, such as eBooks or courseware, automatically through the `r params$lms` course portal.  The Ohio Department of Higher Education (ODHE) calls this Inclusive Access.  For more information, please see [`r params$bookstore`](`r params$bookstorelink`).
 
 ```{R}
-fee_data %>%
+instant_access_fees_data <- fee_data %>%
     filter(Feecategorycode == "SP", Feecode == "IA") %>%
-    select(c("Courseid", "Feetitle", "amt_fmt")) %>%
-    kable(
+    select(c("Courseid", "Feetitle", "amt_fmt"))
+
+if (nrow(instant_access_fees_data)) {
+    instant_access_fees_data %>% kable(
         align = "llr",
         col.names = c("Course", "Material", "Amount")
     )
+} else {
+  knitr::asis_output("**No instant access / inclusive access fees are applied at this institution.**")
+}
 ```
