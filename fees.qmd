@@ -2,8 +2,8 @@
 title: "Fee Inventory"
 subtitle: "ORC 3345.024(A)(1)"
 params:
-    year: "2024-25"
-    file: "FY25_FI.csv"
+    year: "2025-26"
+    file: "FY26_FI.csv"
     lms: "Canvas"
     bookstore: "Commodore Books and More"
     bookstorelink: "http://bookstore.lorainccc.edu/SiteText?id=55657"
